@@ -39,7 +39,7 @@
     </header>
 </template>
 
-<script lang="ts" setup>
+<script name="WeatherNavigation" lang="ts" setup>
 import BaseModal from '@/components/BaseModal.vue'
 
 import { RouterLink } from 'vue-router'
@@ -79,11 +79,6 @@ nav {
 nav a {
     text-decoration: none;
     color: inherit;
-}
-
-.container {
-    margin: 0 auto;
-    width: 100%;
 }
 
 .brand {
@@ -133,30 +128,8 @@ nav a {
 }
 
 @media (min-width: 640px) {
-    .container {
-        max-width: 640px;
-    }
-
     nav {
         flex-direction: row;
-    }
-}
-
-@media (min-width: 768px) {
-    .container {
-        max-width: 768px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .container {
-        max-width: 1024px;
-    }
-}
-
-@media (min-width: 1280px) {
-    .container {
-        max-width: 1280px;
     }
 }
 </style>

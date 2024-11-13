@@ -17,7 +17,7 @@
     </Teleport>
 </template>
 
-<script lang="ts" setup>
+<script name="BaseModal" lang="ts" setup>
 // defineProps(['modalActive'])
 
 // defineProps({ // 运行时声明
@@ -73,7 +73,7 @@ const emits: Function = defineEmits<{
 }
 
 .modal-outer-enter-active,
-.modal-outer-leace-active {
+.modal-outer-leave-active {
     transition: opacity 0.3s cubic-bezier(0.52, 0.02, 0.19, 1.02);
 }
 

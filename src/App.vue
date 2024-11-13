@@ -13,6 +13,11 @@ import { RouterView } from 'vue-router'
 </script>
 
 <style>
+h1,
+p {
+	margin: 0;
+}
+
 .roboto {
 	font-family: Roboto, sans-serif;
 }
@@ -35,9 +40,50 @@ import { RouterView } from 'vue-router'
 	transition-duration: 150ms;
 }
 
+.absolute {
+	position: absolute;
+}
+
 .app {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+}
+
+.container {
+	box-sizing: border-box;
+	margin: 0 auto;
+	padding: 2rem;
+	width: 100%;
+}
+
+@media (min-width: 640px) {
+	.container {
+		max-width: 640px;
+	}
+}
+
+@media (min-width: 768px) {
+	.container {
+		max-width: 768px;
+	}
+}
+
+@media (min-width: 1024px) {
+	.container {
+		max-width: 1024px;
+	}
+}
+
+@media (min-width: 1280px) {
+	.container {
+		max-width: 1280px;
+	}
+}
+
+@media (min-width: 1536px) {
+	.container {
+		max-width: 1536px;
+	}
 }
 </style>
