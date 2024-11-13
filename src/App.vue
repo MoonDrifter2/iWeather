@@ -14,6 +14,7 @@ import { RouterView } from 'vue-router'
 
 <style>
 h1,
+h2,
 p {
 	margin: 0;
 }

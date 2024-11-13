@@ -9,12 +9,12 @@
                     Sorry, something went wrong, please try again.
                 </p>
 
-                <p v-else-if="!searchError && amapSearchResults && amapSearchResults.length === 0">
+                <p v-else-if="!searchError && qWeatherCitySearchResults && qWeatherCitySearchResults.length === 0">
                     No result match your query, try a different term.
                 </p>
 
                 <template v-else>
-                    <li v-for="searchresult in amapSearchResults" :key="searchresult.adcode"
+                    <li v-for="searchresult in qWeatherCitySearchResults" :key="searchresult.adcode"
                         @click="previewCity(searchresult)">
                         {{ searchresult.name }}
                     </li>
@@ -30,12 +30,12 @@ import { useRouter } from 'vue-router'
 
 import axios from 'axios'
 
-const amapApiKey: string = '5b216a847beee5a9e51ca7c6ccc76ea1'
+const qWeatherApiKey: string = '8dbbe7b1dedf40bab69cd05d3425b806'
 
 const router = useRouter()
 
 const searchQuery = ref<string>('')
-const amapSearchResults = ref<Array<{ [key: string]: any }> | null>(null)
+const qWeatherCitySearchResults = ref<Array<{ [key: string]: any }> | null>(null)
 const searchError = ref<boolean>(false)
 
 let queryTimeout: number
@@ -47,16 +47,15 @@ const getSearchResults = (): void => {
 
             try {
                 const { data: {
-                    districts = []
-                } } = await axios.get('https://restapi.amap.com/v3/config/district', {
+                    location = []
+                } } = await axios.get('https://geoapi.qweather.com/v2/city/lookup', {
                     params: {
-                        keywords: searchQuery.value,
-                        subdistrict: 3,
-                        key: amapApiKey
+                        location: searchQuery.value,
+                        key: qWeatherApiKey
                     }
                 })
-                amapSearchResults.value = districts
-                console.log(districts);
+
+                qWeatherCitySearchResults.value = location
             } catch {
                 searchError.value = true
             }
@@ -64,17 +63,18 @@ const getSearchResults = (): void => {
             return
         }
 
-        amapSearchResults.value = null
+        qWeatherCitySearchResults.value = null
     }, 300)
 }
 
 const previewCity = (searchResult: { [key: string]: any }): void => {
-    const { adcode } = searchResult
+    const { name: city, id } = searchResult
 
     router.push({
         name: 'city',
         params: {
-            city: adcode
+            city,
+            id
         },
         query: {
             preview: true
